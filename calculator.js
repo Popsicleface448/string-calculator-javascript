@@ -1,31 +1,31 @@
 var add = function(string) {
   var digits = function() {
 
-  	var findCustomDelimiter = function(string){
-    	return string.substring(2, findNewline(string));  
+  	var findCustomDelimiter = function(){
+    	return string.substring(2, findNewline());  
   	};
 
-  	var hasCustomDelimiter = function(string){
+  	var hasCustomDelimiter = function(){
     	return string.indexOf('//') > -1;
   	};
 
-		var findNewline = function(string) {
+		var findNewline = function() {
     	return string.indexOf('\n');
 		};
-  	var extractString = function(string){ 
-  		return hasCustomDelimiter(string) ? string.slice(findNewline(string) + 1) : string;
+  	var extractString = function(){ 
+  		return hasCustomDelimiter() ? string.slice(findNewline() + 1) : string;
   	};
     
-  	var createDelimiter = function(string){
+  	var createDelimiter = function(){
     	var delimiter = ',\n';
-   		if(hasCustomDelimiter(string)){
-				delimiter = findCustomDelimiter(string) + delimiter; 
+   		if(hasCustomDelimiter()){
+				delimiter = findCustomDelimiter() + delimiter; 
     	}
 	  	return '[' + delimiter + ']';
   	};
  
-		var arr = [], delimiter = new RegExp(createDelimiter(string)),
-        tokens = extractString(string).split(delimiter);
+		var arr = [], delimiter = new RegExp(createDelimiter()),
+        tokens = extractString().split(delimiter);
     for (var i = 0; i<tokens.length; i++) {
       arr.push(Number(tokens[i]));
     }
